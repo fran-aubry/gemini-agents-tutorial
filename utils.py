@@ -15,11 +15,9 @@ def read_text_file(path):
 def download_env(env_id, path="environments"):
     download_url = f"https://generativelanguage.googleapis.com/v1beta/files/environment-{env_id}:download"
     try:
-
         request_params = {"alt": "media"}  # Retrieves raw media binary
         request_headers = {"x-goog-api-key": os.environ.get("GEMINI_API_KEY")}
-
-        # Perform the direct GET download request
+        # Download the environment
         print(f"Downloading enviroment: {env_id}")
         response = requests.get(
             download_url,
@@ -28,7 +26,6 @@ def download_env(env_id, path="environments"):
             allow_redirects=True
         )
         response.raise_for_status()
-        
         # Save the compressed workspace archive locally
         archive_name = f"{env_id}.tar"
         output_path = os.path.join(path, archive_name)
@@ -75,7 +72,6 @@ def load_or_create_agent(client, agent_id):
                 ]
             }
         )
-        print("Agent created.")
     return agent
 
 

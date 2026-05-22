@@ -9,9 +9,9 @@ load_dotenv()
 # Initialize the GenAI Client
 client = genai.Client()
 
-inter1 = client.interactions.create(
+inter = client.interactions.create(
     agent="antigravity-preview-05-2026",
-    input="Add all the numbers in the `numbers.txt` file.",
+    input="Add all the numbers in the `/workspace/numbers.txt` file.",
     environment={
         "type": "remote",
         "sources": [
@@ -26,6 +26,6 @@ inter1 = client.interactions.create(
     }
 )
 
-print(f"Status: {inter1.status}")
-print(f"Environment ID: {inter1.environment_id}")
-print(f"Output:\n{inter1.output_text}")
+print(f"Status: {inter.status}")
+print(f"Environment ID: {inter.environment_id}")
+print(f"Output:\n{inter.output_text}")

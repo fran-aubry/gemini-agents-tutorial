@@ -7,9 +7,9 @@ client = genai.Client()
 
 # 1. Register the Agent
 # The agent will automatically detect the /.agents/ folder inside the repository
-data_analyst = utils.load_or_create_agent(client, "data-analyst-agent-v5")
+data_analyst = utils.load_or_create_agent(client, "data-analyst-agent")
 
-print(f"Agent '{data_analyst.id}' initialized with repository configuration.")
+print(f"Agent '{data_analyst.id}' initialized.")
 
 # 2. Interact
 inter1 = client.interactions.create(
@@ -24,7 +24,7 @@ env_id = inter1.environment_id
 # from the repository for this request.
 inter2 = client.interactions.create(
     agent=data_analyst.id,
-    input="Use the csv-aggregator to plot the top 10 genres from /workspace/repository/data/netflix.csv.",
+    input="Use the csv-aggregator to plot the top 10 genres from `/workspace/repository/data/netflix.csv` in terms of viwership",
     environment=env_id
 )
 
