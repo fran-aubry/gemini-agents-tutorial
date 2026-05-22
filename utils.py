@@ -31,8 +31,7 @@ def download_env(env_id, path="environments"):
         output_path = os.path.join(path, archive_name)
         with open(output_path, "wb") as archive_file:
             archive_file.write(response.content)
-        print(f"Successfully downloaded workspace snapshot archive: {output_path}")
-        
+        print(f"Successfully downloaded workspace snapshot archive: {output_path}")     
     except requests.exceptions.RequestException as error:
         print(f"Failed to download sandbox workspace via HTTP request: {error}")
     except tarfile.TarError as archive_error:
@@ -73,8 +72,3 @@ def load_or_create_agent(client, agent_id):
             }
         )
     return agent
-
-
-if __name__ == "__main__":
-    env_id = "529b3af5-31de-4027-b393-0b709106db0e"
-    download_env(env_id)
