@@ -17,7 +17,7 @@ inter1 = client.interactions.create(
         "sources": [
             {
                 "type": "inline",
-                # The file where to store the data in the agent environemnt
+                # The file where to store the data in the agent environment
                 "target": "/workspace/numbers.txt",
                 # Assumes that the file data/numbers.txt exists
                 "content": utils.read_text_file("data/numbers.txt")
