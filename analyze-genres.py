@@ -7,20 +7,7 @@ client = genai.Client()
 
 # 1. Register the Agent
 # The agent will automatically detect the /.agents/ folder inside the repository
-data_analyst = client.agents.create(
-    id="data-analyst-agent",
-    base_agent="antigravity-preview-05-2026",
-    base_environment={
-        "type": "remote",
-        "sources": [
-            {
-                "type": "repository",
-                "source": "https://github.com/your-username/your-repo",
-                "target": "/workspace/repository"
-            }
-        ]
-    }
-)
+data_analyst = utils.load_or_create_agent(client, "data-analyst-agent-v5")
 
 print(f"Agent '{data_analyst.id}' initialized with repository configuration.")
 
@@ -33,7 +20,7 @@ inter1 = client.interactions.create(
 
 env_id = inter1.environment_id
 
-# The agent will automatically recognize and use the netflix-viz skill 
+# The agent will automatically recognize and use the netflix-viz skill
 # from the repository for this request.
 inter2 = client.interactions.create(
     agent=data_analyst.id,
@@ -52,4 +39,4 @@ inter3 = client.interactions.create(
     environment=env_id
 )
 
-utils.download_env(env_id)
+utils.download_env(inter3.environment_id)
